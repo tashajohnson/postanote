@@ -16,28 +16,28 @@
         <form action='/posts' method='post'>
           <input type='text' name='title' placeholder='Title' />
           <input type='text' name='content' placeholder='Content' required />
-          <!-- <p>
-            <input name='color' type='radio' id='red' />
-            <label for='red'>Red</label>
+          <p>
+              <input checked='true' name='color' value='note-purple' type='radio' id='purple' />
+              <label for='purple'>Purple</label>
           </p>
           <p>
-            <input name='color' type='radio' id='blue' />
+            <input name='color' value='note-blue' type='radio' id='blue' />
             <label for='blue'>Blue</label>
           </p>
           <p>
-            <input class='with-gap' name='color' type='radio' id='green'  />
+            <input class='with-gap' name='color' value='note-green' type='radio' id='green'  />
             <label for='green'>Green</label>
           </p>
-            <p>
-              <input name='color' type='radio' id='purple' />
-              <label for='purple'>Purple</label>
-          </p> -->
+          <p>
+            <input name='color' value='note-red' type='radio' id='red' />
+            <label for='red'>Red</label>
+          </p>
           <button class='btn btn-waves' type='submit'>Add Note</button>
         </form>
         <div>
           <% posts.forEach(function(post) { %>
             <% action ='/posts/' + post.id %>
-            <div class='note'>
+            <div data-post-id=<%= post.id %> class=<%= post.color%>>
               <form action=<%= action %> method='POST'>
                   <button class='delete right' type='submit'>X</button>
               </form>
@@ -51,30 +51,35 @@
         <span></span>
       </div>
       <script type="text/javascript">
-      // $( 'input[type=radio]' ).on( 'click', function(){
-
-      //     var color = $(this).id();
-      //     switch ( color ){
-      //         case 'purple':
-      //             $('.note').css( 'background-color', 'purple' );
-      //             break;
-      //         case 'blue':
-      //             $('.note').css( 'background-color', 'blue' );
-      //             break;
-      //         case 'red':
-      //             $('.note').css( 'background-color', 'red' );
-      //             break;
-      //         case 'green':
-      //             $('.note').css( 'background-color', 'green' );
-      //             break;
-      //     }
-      // } );
+  
        
       $( init );
        
       function init() {
-        $('.note').draggable({ cursor: 'move', revert: 'invalid' });
-        $( '.corkboard' ).droppable();
+        $('.note-blue, .note-purple, .note-red, .note-green').draggable({ cursor: 'move', revert: 'invalid' });
+        $('.corkboard').droppable({
+          drop: function(event, ui) {
+            console.log(ui.position);
+            var postId = $(event.srcElement).data('post-id');
+            console.log(postId);
+            // make ajax call to your post that edits a card
+            // that ajax call will pass note location
+            // update route(posts.js) will update note and return true || false
+            $.ajax({
+              type: 'POST',
+              url: '/some_url',
+              data: {postId: postId},
+              success: function(data) {
+                console.log(data);
+              },
+              error: function(data) {
+                console.log(data);
+              }
+            });
+
+          }
+        });
+
         
       }
        

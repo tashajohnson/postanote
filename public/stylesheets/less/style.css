@@ -17,12 +17,33 @@ body {
 .blue {
   background-color: blue;
 }
-.note {
+.note-purple {
   color: #fff;
   width: 300px;
   height: 300px;
   border: 1px solid #A39071;
   background: linear-gradient(to right bottom, #8230CF, #5C199C);
+}
+.note-blue {
+  color: #fff;
+  width: 300px;
+  height: 300px;
+  border: 1px solid #A39071;
+  background: linear-gradient(to right bottom, #00C0F5, #007291);
+}
+.note-red {
+  color: #fff;
+  width: 300px;
+  height: 300px;
+  border: 1px solid #A39071;
+  background: linear-gradient(to right bottom, #C40F02, #870900);
+}
+.note-green {
+  color: #fff;
+  width: 300px;
+  height: 300px;
+  border: 1px solid #A39071;
+  background: linear-gradient(to right bottom, #00D438, #008A25);
 }
 .corkboard {
   border: 10px solid #5E4111;
