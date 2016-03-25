@@ -1,0 +1,38 @@
+@import '../../bower_components/Materialize/dist/css/materialize.min.css';
+body {
+  font-family: 'Shadows Into Light', cursive;
+}
+.intro {
+  background: url(../../images/intro.jpg) no-repeat center center fixed;
+  background-size: cover;
+}
+.main {
+  padding: 150px;
+}
+.main h1 {
+  color: #fff;
+  text-shadow: 2px 2px 2px #000;
+  line-height: 1.5em;
+}
+.blue {
+  background-color: blue;
+}
+.note {
+  color: #fff;
+  width: 300px;
+  height: 300px;
+  border: 1px solid #A39071;
+  background: linear-gradient(to right bottom, #8230CF, #5C199C);
+}
+.corkboard {
+  border: 10px solid #5E4111;
+  height: 1000px;
+  width: 800px;
+  background-color: grey;
+  background: url(../../images/corkboard.jpg);
+}
+.delete {
+  border: none;
+  background: none;
+  color: #fff;
+}
