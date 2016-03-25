@@ -10,6 +10,7 @@ var routes = require('./routes/index');
 var posts = require('./routes/posts');
 
 
+
 var app = express();
 
 // view engine setup

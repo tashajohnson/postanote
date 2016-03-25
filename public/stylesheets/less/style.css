@@ -1,6 +1,7 @@
 @import '../../bower_components/Materialize/dist/css/materialize.min.css';
 body {
   font-family: 'Shadows Into Light', cursive;
+  margin: 5px;
 }
 .intro {
   background: url(../../images/intro.jpg) no-repeat center center fixed;
@@ -14,36 +15,60 @@ body {
   text-shadow: 2px 2px 2px #000;
   line-height: 1.5em;
 }
+a {
+  color: #fff;
+  text-decoration: none;
+}
 .blue {
   background-color: blue;
 }
+.note-text {
+  color: #fff;
+}
 .note-purple {
   color: #fff;
-  width: 300px;
-  height: 300px;
-  border: 1px solid #A39071;
+  text-shadow: 1px 1px 1px #000;
+  width: 250px;
+  height: 250px;
+  border: 1px solid #5C199C;
   background: linear-gradient(to right bottom, #8230CF, #5C199C);
+  box-shadow: 2px 2px 3px #000;
 }
 .note-blue {
   color: #fff;
-  width: 300px;
-  height: 300px;
-  border: 1px solid #A39071;
+  text-shadow: 1px 1px 1px #000;
+  width: 250px;
+  height: 250px;
+  border: 1px solid #007291;
   background: linear-gradient(to right bottom, #00C0F5, #007291);
+  box-shadow: 2px 2px 3px #000;
 }
 .note-red {
   color: #fff;
-  width: 300px;
-  height: 300px;
-  border: 1px solid #A39071;
-  background: linear-gradient(to right bottom, #C40F02, #870900);
+  text-shadow: 1px 1px 1px #000;
+  width: 250px;
+  height: 250px;
+  border: 1px solid #AD2800;
+  background: linear-gradient(to right bottom, #FF511C, #AD2800);
+  box-shadow: 2px 2px 3px #000;
 }
 .note-green {
   color: #fff;
-  width: 300px;
-  height: 300px;
-  border: 1px solid #A39071;
+  text-shadow: 1px 1px 1px #000;
+  width: 250px;
+  height: 250px;
+  border: 1px solid #008A25;
   background: linear-gradient(to right bottom, #00D438, #008A25);
+  box-shadow: 2px 2px 3px #000;
+}
+.note-yellow {
+  color: #fff;
+  text-shadow: 1px 1px 1px #000;
+  width: 250px;
+  height: 250px;
+  border: 1px solid #FFEA00;
+  background: linear-gradient(to right bottom, #FFEF40, #FFEA00);
+  box-shadow: 2px 2px 3px #000;
 }
 .corkboard {
   border: 10px solid #5E4111;
@@ -56,4 +81,5 @@ body {
   border: none;
   background: none;
   color: #fff;
+  text-shadow: 1px 1px 1px #000;
 }

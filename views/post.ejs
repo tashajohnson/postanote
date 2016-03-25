@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+ <head>
+   <% include ./partials/head %>
+ </head>
+ <body>
+   <header>
+   <% include ./partials/header %>
+   </header>
+   <a href="/posts">Back</a>
+   <h1 class='center'>Create a Note- Organize Your Life!</h1>
+   <hr />
+   <div class='row'>
+     <div class='col s12 m3'>
+       <h3>Update Note</h3>
+       <hr />
+       <% var action = "/posts/edit/" + post.id %>
+       <form action=<%= action %> method="POST">
+         <input type="text" name="title" value=<%= post.title %> />
+         <input type="text" name="content" value=<%= post.content %> />
+         <p>
+             <input checked='true' name='color' value='note-purple' type='radio' id='purple' />
+             <label for='purple'>Purple</label>
+         </p>
+         <p>
+           <input name='color' value='note-blue' type='radio' id='blue' />
+           <label for='blue'>Blue</label>
+         </p>
+         <p>
+           <input class='with-gap' name='color' value='note-green' type='radio' id='green'  />
+           <label for='green'>Green</label>
+         </p>
+         <p>
+           <input name='color' value='note-red' type='radio' id='red' />
+           <label for='red'>Red</label>
+         </p>
+         <button class="btn btn-waves">Update</button>
+         <a href ="/posts"><button class="btn btn-waves">Back</button>
+       </form>
+     </div>
+     <div class='corkboard col m9 s12'>
+       <span></span>
+     </div>
+   </div>
+
+     <script type="text/javascript">
+
+     $( init );
+       
+      function init() {
+        $('.note-blue, .note-purple, .note-red, .note-green').draggable({ cursor: 'move', revert: 'invalid' });
+        $('.corkboard').droppable({
+          drop: function(event, ui) {
+            console.log(ui.position);
+            var postId = $(event.srcElement).data('post-id');
+            console.log(postId);
+          }
+        });
+      }   
+      </script>
+ </body>
+</html>

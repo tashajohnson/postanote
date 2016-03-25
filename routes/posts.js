@@ -18,6 +18,8 @@ router.post('/', function(req, res) {
     title: req.body.title,
     content: req.body.content,
     color: req.body.color,
+    top: req.body.top,
+    left: req.body.left,
     updated_at: Date.now()
   }).save( function(err, posts) {
     res.redirect('/posts');
@@ -34,6 +36,19 @@ router.get('/:id', function(req, res) {
 });
 
 // Edit a note
+
+router.post('/edit/:id', function(req, res) {
+  Postnote.findById(req.params.id, function(err, post) {
+    post.title = req.body.title,
+    post.content = req.body.content, 
+    post.color = req.body.color,
+    post.position = req.body.position,
+    post.updated_at = Date.now();
+    post.save( function(err, post) {
+      res.redirect('/posts');
+    });
+  });
+});
 // ajax call would go to this route
 // get the data from the ajax call
 // update the database
