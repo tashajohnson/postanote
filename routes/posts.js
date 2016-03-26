@@ -18,8 +18,8 @@ router.post('/', function(req, res) {
     title: req.body.title,
     content: req.body.content,
     color: req.body.color,
-    top: req.body.top,
-    left: req.body.left,
+    // top: req.body.top,
+    // left: req.body.left,
     updated_at: Date.now()
   }).save( function(err, posts) {
     res.redirect('/posts');
@@ -42,10 +42,11 @@ router.post('/edit/:id', function(req, res) {
     post.title = req.body.title,
     post.content = req.body.content, 
     post.color = req.body.color,
-    post.position = req.body.position,
+    // post.top = req.body.top,
+    // post.left = req.body.left,
     post.updated_at = Date.now();
     post.save( function(err, post) {
-      res.redirect('/posts');
+      res.redirect('/posts/');
     });
   });
 });

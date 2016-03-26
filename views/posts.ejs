@@ -40,64 +40,64 @@
         </form>
       </div>
       <div class='corkboard col m9 s12'>
-        <div class='note-text'>
-          <% posts.forEach(function(post) { %>
-            <% action ='/posts/' + post.id %>
-            <div data-post-id=<%= post.id %> class=<%= post.color%>>
-              <form action=<%= action %> method='POST'>
-                  <button class='delete right' type='submit'>X</button>
-                  <a href=<%= action %>>Edit</a>
-              </form>
-              <p class='center'><a href=<%= action %>><%= post.title %></a></p>
-              <p class='center'><%= post.content %></p>
-            </div>
-          <% }); %>
+        <div class='row'>
+          <div class='note-text col m3'>
+            <% posts.forEach(function(post) { %>
+              <% action ='/posts/' + post.id %>
+              <div data-post-id=<%= post.id %> class=<%= post.color%>>
+                <form action=<%= action %> method='POST'>
+                    <button class='delete right' type='submit'>X</button>
+                    <a href=<%= action %>>Edit</a>
+                </form>
+                <p class='center'><a href=<%= action %>><%= post.title %></a></p>
+                <p class='center'><%= post.content %></p>
+              </div>
+            <% }); %>
+          </div>
         </div>
       </div>
-      <script type="text/javascript">
+      <script type='text/javascript'>
       
       $( init );
        
       function init() {
-        $('.note-blue, .note-purple, .note-red, .note-green, .note-yellow').draggable({ cursor: 'move', revert: 'invalid' }).position();
+        $('.note-blue, .note-purple, .note-red, .note-green, .note-yellow').draggable({ cursor: 'move'});
         $('.corkboard').droppable({
           drop: function(event, ui) {
             console.log(ui.position);
-            var position = ui.position;
             var postId = $(event.srcElement).data('post-id');
             console.log(postId);
+            // var el = $('.note-blue, .note-purple, .note-red, .note-green, .note-yellow'); 
+            // var left = el.offset().left;
+            // var top = el.offset().top;
+            // $.ajax({
+            //   url: '/posts/',
+            //   type: 'GET',
+            //   success: function(data) {
+            //     console.log('Saved ' + data);
+            //   },
+            //   error: function(data) {
+            //     console.log(data);
+            //   }
+            // });
+            // $.ajax({
+            //   url:'/posts/edit/' + postId,
+            //   type: 'POST',
+            //   data: {top: top, left: left},
+            //   success: function(data) {
+            //     console.log('Posted' + data);
+            //   },
+            //   error: function(data) {
+            //     console.log('Error' + data);
+            //   }
+            // });
+          }
+          
             // make ajax call to your post that edits a card
             // that ajax call will pass note location
             // update route(posts.js) will update note and return true || false
-
-            $.ajax({
-              type: 'GET',
-              url: '/posts/',
-              success: function(data) {
-                console.log(data);
-              },
-              error: function(data) {
-                console.log(data);
-              }
-            });
-
-            // Example POST Request
-            $.ajax({
-              type: 'POST',
-              url:'/posts/edit/' + postId,
-              data: {postId: postId, position: position},
-              success: function(data) {
-                console.log("Posted " + data);
-              },
-              error: function(msg) {
-                console.log("Error " + msg);
-              }
-            });
-
-          }
+          
         });
-
-        
       }
        
       </script>

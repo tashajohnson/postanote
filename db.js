@@ -5,7 +5,8 @@ var Postnote = new Schema({
   title: {type: String},
   content: {type: String, required: true},
   color: {type: String},
-  position: {top: Number, left: Number},
+  top: Number, 
+  left: Number,
   updated_at: Date,
 });
 
