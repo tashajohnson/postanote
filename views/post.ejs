@@ -14,7 +14,7 @@
      <div class='col s12 m3'>
        <h3>Update Note</h3>
        <hr />
-       <% var action = "/posts/edit/" + post.id %>
+       <% var action = "/posts/update/" + post.id %>
        <form action=<%= action %> method="POST">
          <input type="text" name="title" value=<%= post.title %> />
          <input type="text" name="content" value=<%= post.content %> />

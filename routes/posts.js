@@ -37,18 +37,34 @@ router.get('/:id', function(req, res) {
 
 // Edit a note
 
-router.post('/edit/:id', function(req, res) {
+router.post('/update/:id', function(req, res) {
   Postnote.findById(req.params.id, function(err, post) {
     post.title = req.body.title,
     post.content = req.body.content, 
     post.color = req.body.color,
-    // post.top = req.body.top,
-    // post.left = req.body.left,
+    post.top = req.body.top,
+    post.left = req.body.left,
     post.updated_at = Date.now();
     post.save( function(err, post) {
-      res.redirect('/posts/');
+      res.redirect('/posts');
     });
   });
+});
+
+router.post('/edit/:id', function(req, res) {
+  Postnote.findById(req.params.id, function(err, post) {
+    post.top = req.body.top,
+    post.left = req.body.left,
+    post.updated_at = Date.now();
+    post.save( function(err, updatedPost) {
+      res.send(updatedPost);
+    });
+  });
+});
+
+router.post('/postPosition_template', function(req, res) {
+  var post = req.body;
+  res.render('post', {id: post.id, title: post.title, content: post.content, color: post.color, top: post.top, left: post.left})
 });
 // ajax call would go to this route
 // get the data from the ajax call

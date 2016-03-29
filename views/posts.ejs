@@ -61,36 +61,67 @@
       $( init );
        
       function init() {
-        $('.note-blue, .note-purple, .note-red, .note-green, .note-yellow').draggable({ cursor: 'move'});
+        $('.note-blue, .note-purple, .note-red, .note-green, .note-yellow').draggable({ 
+          cursor: 'move',
+
+        });
         $('.corkboard').droppable({
-          drop: function(event, ui) {
-            console.log(ui.position);
-            var postId = $(event.srcElement).data('post-id');
-            console.log(postId);
-            // var el = $('.note-blue, .note-purple, .note-red, .note-green, .note-yellow'); 
-            // var left = el.offset().left;
-            // var top = el.offset().top;
-            // $.ajax({
-            //   url: '/posts/',
-            //   type: 'GET',
-            //   success: function(data) {
-            //     console.log('Saved ' + data);
-            //   },
-            //   error: function(data) {
-            //     console.log(data);
-            //   }
-            // });
-            // $.ajax({
-            //   url:'/posts/edit/' + postId,
-            //   type: 'POST',
-            //   data: {top: top, left: left},
-            //   success: function(data) {
-            //     console.log('Posted' + data);
-            //   },
-            //   error: function(data) {
-            //     console.log('Error' + data);
-            //   }
-            // });
+          drop: function(event, ui) { 
+            var postId = $(ui.helper[0]).data('post-id');
+
+            var el = $('.note-blue, .note-purple, .note-red, .note-green, .note-yellow'); 
+            var left = el.offset().left;
+            var top = el.offset().top;
+            $.ajax({
+              url:'/posts/edit/' + postId,
+              type: 'POST',
+              data: {top: top, left: left},
+              success: function(data) {
+                console.log(data);
+                // $('.corkboard').empty();
+                function getAllPosts() {
+                  $.ajax({
+                    url: '/posts', 
+                    type: 'GET',
+                    dataType: 'JSON'
+                  }).done(function(data){
+                    updatePostPosition(data);
+                  }).fail(function(data){
+                    console.log(data);
+                  });
+                }
+
+                function updatePostPosition(posts) {
+                  posts.forEach( function(post) {
+                    $.ajax({
+                      url: '/posts/postPosition_template', 
+                      type: 'POST',
+                      dataType: 'HTML',
+                      data: {
+                        id: post._id,
+                        title: post.title, 
+                        content: post.content,
+                        color: post.color,
+                        top: post.top,
+                        left: post.left
+                      }
+                    }).done(function(data){
+                      $('.corkboard').append(data);
+                    }).fail(function(data){
+                      console.log(data);
+                    });
+                 });
+                }
+                // clear the board $('.board').empty()
+                // make ajax call to get all notes
+                // loop the notes and display
+                // set note top and left with jquery
+                   // $(".note").css({top: note.top, left: note.left});
+              },
+              error: function(data) {
+                console.log('Error' + data);
+              }
+            });
           }
           
             // make ajax call to your post that edits a card

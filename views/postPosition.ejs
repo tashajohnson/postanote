@@ -1,0 +1,15 @@
+<div class='row'>
+  <div class='note-text col m3'>
+    <% posts.forEach(function(post) { %>
+      <% action ='/posts/' + post.id %>
+      <div data-post-id=<%= post.id %> class=<%= post.color%>>
+        <form action=<%= action %> method='POST'>
+            <button class='delete right' type='submit'>X</button>
+            <a href=<%= action %>>Edit</a>
+        </form>
+        <p class='center'><a href=<%= action %>><%= post.title %></a></p>
+        <p class='center'><%= post.content %></p>
+      </div>
+    <% }); %>
+  </div>
+</div>
